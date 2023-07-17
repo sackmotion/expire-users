@@ -32,7 +32,7 @@ class Expire_User_Admin {
 
 		// User Column
 		add_filter( 'manage_users_columns', array( $this, 'manage_users_columns' ) );
-		add_action( 'manage_users_custom_column', array( $this, 'manage_users_custom_column' ), 10, 3 );
+		add_action( 'manage_users_custom_column', array( $this, 'manage_users_custom_column' ), 101, 3 );
 
 		// User Column - Sortable
 		add_filter( 'manage_users_sortable_columns', array( $this, 'manage_users_columns_sortable' ) );
@@ -107,7 +107,7 @@ class Expire_User_Admin {
 	 */
 	function manage_users_custom_column( $value, $column_name, $user_id ) {
 		$user = get_userdata( $user_id );
-		$value = '';
+		$value = __( 'No setup', 'expire-user-no-setup' );;
 		if ( 'expire_user' == $column_name ) {
 			$u = new Expire_User( $user_id );
 			$expire_date = get_user_meta( $user_id, '_expire_user_date', true );
