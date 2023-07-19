@@ -14,8 +14,13 @@ class Expire_Users {
 		add_filter( 'allow_password_reset', array( $this, 'allow_password_reset' ), 10, 2 );
 		add_filter( 'shake_error_codes', array( $this, 'shake_error_codes' ) );
 		add_action( 'init', array( $this, 'logout_expired_logged_in_user' ) );
+		/* Default wordpress hooks for user registration */
 		add_action( 'register_form', array( $this, 'register_form' ) );
 		add_action( 'user_register', array( $this, 'user_register' ) );
+
+		/* Hooks for Ultimate member registration */
+		add_action( 'um_after_register_fields', array( $this, 'register_form' ) );
+
 		add_action( 'expire_users_expired', array( $this, 'handle_on_expire_default_to_role' ) );
 		add_action( 'expire_users_expired', array( $this, 'handle_on_expire_user_reset_password' ) );
 		add_action( 'expire_users_expired', array( $this, 'handle_on_expire_user_email' ) );
